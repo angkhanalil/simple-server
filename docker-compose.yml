@@ -1,0 +1,13 @@
+version: '3'
+services:
+  my_sample_server: 
+    image: sample-server:2.1
+    ports:
+      - 8000:8000
+  my_web_server:
+    image: nginx:latest
+    volumes:
+      - D:/node/web:/usr/share/nginx/html
+    ports:
+      - 8080:80
+
