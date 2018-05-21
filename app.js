@@ -9,20 +9,25 @@ var express = require('express');
 var bodyParser = require("body-parser");
 var app = express();
 var server = require('http').Server(app);
-server.listen(8000);
+server.listen(3000);
+const cors  = require('cors');
 const birds = require('./birds');
 const user = require('./controller/user');
-
+const login = require('./controller/login');
+const issue = require('./controller/issue');
 
 app.use(express.static('web'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended:true
 }));
+app.use(cors());
 app.use("/birds",birds);
-app.use("/user",user);
+app.use("/api/v1/user",user);
+app.use("/api/v1/login",login);
+app.use("/api/v1/issue",issue);
 
-console.log("server running port 8000");
+console.log("server running port 3000");
 
 app.get('/he*', function (req, res,next) {
     console.log("Hello form all logs");

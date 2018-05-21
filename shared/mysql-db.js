@@ -14,8 +14,12 @@ MysqlDB.prototype.query = function (sql,cb) {
                 console.log("connection err");
                 console.log(err);
             }else{
-                _con.query(sql,cb);
-                
+
+                _con.query(sql,function(err,result){
+                    _con.release();
+                    cb(err,result);
+                });
+
             }
         })
 }; 
